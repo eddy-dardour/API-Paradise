@@ -10,7 +10,7 @@ export function Header() {
   return (
       <StyledHeader>
         <NavLink to="/"><StyledButton>Home</StyledButton></NavLink>
-        <NavLink to="/"><StyledButton>API List</StyledButton></NavLink>
+        <NavLink to="/List"><StyledButton>API List</StyledButton></NavLink>
         <NavLink to="/"><StyledButton>Contact</StyledButton></NavLink>
       </StyledHeader>
   )
@@ -174,7 +174,7 @@ const MidDiv = styled.div`
     
 `
 
-const MiddleText = styled.p`
+export const MiddleText = styled.p`
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     max-width : 400px;
     border-radius : 20px;

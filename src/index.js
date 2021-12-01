@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Home from './pages/Home.jsx';
+import ListPage from './pages/ListPage';
 import {Header} from './pages/Home.jsx'
 import reportWebVitals from './reportWebVitals';
 import { General } from './pages/Home.jsx';
@@ -14,6 +15,7 @@ ReactDOM.render(
       <General/>
       <Header/>
       <Routes>
+      <Route path="/List" element={<ListPage/>}/>
       <Route path="/" element={<Home/>}/>
       </Routes>
     </Router>
