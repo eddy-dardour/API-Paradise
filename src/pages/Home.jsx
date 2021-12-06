@@ -11,7 +11,7 @@ export function Header() {
       <StyledHeader>
         <NavLink to="/"><StyledButton>Home</StyledButton></NavLink>
         <NavLink to="/List"><StyledButton>API List</StyledButton></NavLink>
-        <NavLink to="/"><StyledButton>Contact</StyledButton></NavLink>
+        <NavLink to="/Playground"><StyledButton>Playground</StyledButton></NavLink>
       </StyledHeader>
   )
 }
@@ -194,7 +194,7 @@ const StyledButton = styled.button`
   height : 70px;
   background-color : ${colorPalette.fifth};
   font-family: 'Outfit', sans-serif;
-  transition : 0.1s;
+  transition : 0.1s ease-out;
   font-weight: bold;
   text-align: center;
   border: none;

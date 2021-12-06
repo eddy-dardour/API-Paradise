@@ -1,12 +1,11 @@
 import styled from 'styled-components'
 import { useState } from 'react';
 import {Data1} from '../data/apidocelement.js'
-import { colorPalette } from './Home.jsx';
 
 function ListPage () {
 
     const [Open, setOpen] = useState(false);
-    const MiddleTextClose = styled.div`
+    const MiddleText = styled.div`
        
     padding : 10px;
     transition : 0.3s;
@@ -16,57 +15,92 @@ function ListPage () {
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
     width : 50%;
     margin : auto;
+    margin-bottom : 10%;
+    li:hover{
+        transform : translateY(20%)
+    }
     `
-    const MiddleTextOpen = styled.div`
-    padding : 10px;
-    transition : 0.3s;
-    text-align : center;
-    border-radius: 15px;
-    box-shadow : 2px 2px 2px grey;
-    background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    width : 70%;
-    margin : auto;
-    margin-bottom: 1%;
-`
 
 const APIListDiv = styled.div`
-    display : flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color : ${colorPalette.fifth};
-    border-radius: 15px;
-    box-shadow : 2px 2px 2px grey;
-    padding: 20px;
-    width : 50%;
-    margin-left : 10%;
-    transition : 0.3s;
-    &:hover {
-        transform: translateX(20%);
-    }
 `
+
 
         return (
         Open === true ? 
         <div>            
-            <MiddleTextOpen>
-                <p>Close catalog <button onClick={() => {setOpen(false)}}>Close</button></p>
-            </MiddleTextOpen>
+            <MiddleText onClick={() => setOpen(false)}>
+                Close catalog
+            </MiddleText>
+            <Item/>
             <APIListDiv>
-            {Data1.map(({id , name, des}) => 
-                <>
-           <p>{id}</p> 
-           <p>{name}</p>
-           <p>{des}</p>
-                </>     
-        )}
+                
             </APIListDiv>
         </div>
         :
-            <MiddleTextClose onClick={() => {setOpen(true)}}>
-                <p>
-                Open API's catalog</p>
-            </MiddleTextClose>
+            <MiddleText onClick={() => setOpen(true)}>
+                Open Catalog
+            </MiddleText>
         )
 
+}
+const Div = styled.div`
+    
+      li {
+        transition : 0.3s ease-out;
+        display : flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        border-radius: 15px;
+        box-shadow : 2px 2px 2px grey;
+        padding: 20px;
+        width : 50%;
+        margin-top : 10px;
+        margin-left : 10%;
+        background-color : #c5cfba;
+        margin: 10px;
+    }
+    li:hover {
+        transform: translateX(20%);
+    }
+    li img {
+        border-radius : 5px;
+        box-shadow : 2px 2px 2px grey;
+    }
+    .li-expand {
+        max-height : 1200px;
+        overflow : auto;
+    }
+`
+
+
+function Item () {
+    const [itemOpened, openItem] = useState(false)
+    return (
+    <ul>
+        <Div>
+            {Data1.map(({id , name, des, img, full}) => 
+            
+        {
+                    return itemOpened === false ?
+
+                        <li onClick={() => openItem(true)}>
+                            <p>Index: {id}</p>
+                            <p>Name: {name}</p>
+                            <p>Description: {des}</p>
+                            
+                        </li>
+
+                        :
+
+                        <li className="li-expand" onClick={() => openItem(false)}>
+                            <img src={img} alt={id} />
+                            <p> Index: {id}</p>
+                            <p>Name: {name}</p>
+                            <p>{full}</p>
+                        </li>;
+                }
+        )} 
+        </Div>
+        </ul>)
 }
 export default ListPage;
