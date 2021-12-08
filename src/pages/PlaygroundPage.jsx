@@ -1,11 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components'
 import {colorPalette} from './Home.jsx'
 import { useTransition, animated } from 'react-spring'
 
 export default function PlaygroundPage () {
-    
-    return <><ButtonAnimate/></>
+    const DIV2 = styled.div`
+    `
+    return <DIV2><ButtonAnimate/><InputButton/></DIV2>
 }
 
 export function ButtonAnimate () {
@@ -83,8 +84,20 @@ export function NasaAPI () {
 //  This part is for the Input Buttons testing
 //  Testing other API's than Nasa API.
 
-export function InputButton () {
-    return
+export function InputButton() {
+    const [value, setValue] = useState("");
+    function changeHandle (event) {
+    console.log(event.target.value); 
+    console.log(event); 
+    setValue(event.target.value)
+    }
+    return (
+        <div>
+        <input type="email" id="input" onChange={(event) => changeHandle(event)} placeholder="Ex : google.test@gmail.com"/>
+        <label htmlFor="input"> Adresse e-mail</label>
+        <p>{value}</p>
+        </div>
+    )
 }
 
 
